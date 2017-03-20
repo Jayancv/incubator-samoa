@@ -155,6 +155,8 @@ final public class LocalClustererProcessor implements Processor {
   @Override
   public boolean process(ContentEvent event) {
 
+    updateStats(event);
+    
     if (event.isLastEvent() ||
         (instancesCount > 0 && instancesCount % this.sampleFrequency == 0)) {
       if (model.implementsMicroClusterer()) {
@@ -167,7 +169,6 @@ final public class LocalClustererProcessor implements Processor {
       }
     }
 
-    updateStats(event);
     return false;
   }
 
